@@ -1,10 +1,11 @@
 {
-    "build": {
-      "env": {
-        "DATABASE_URL": "postgresql://postgres:quantum-tic-tac-entangle@db.zyeqyfgkjrvgqqgyitgk.supabase.co:5432/postgres"
-      },
-      "functions": {
-        "preBuild": "prisma generate && next build"
+    "builds": [
+      {
+        "src": "vercel-build.js",
+        "use": "@vercel/node"
       }
+    ],
+    "functions": {
+      "preBuild": "prisma generate"
     }
   }
