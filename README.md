@@ -49,19 +49,55 @@ npm i @supabase/auth-helpers-nextjs @supabase/supabase-js
 npx prisma migrate dev --name 更新タイトル
 ```
 
-## デプロイ　→　失敗
-vercel.jsonの追加
-```
-{
-  "build": {
-    "env": {
-      "DATABASE_URL": "@your-database-url"
-    },
-    "commands": {
-      "build": "prisma generate && next build"
-    }
-  }
-}
+## package.jsonの修正
+```json
+    "build": "prisma generate && prisma db push && next build",
 ```
 
-@your-database-urlには.envのWRITER_DATABASE_URLを入力
+## CORSの対応 next.config.jsの修正
+```js
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+    // 全ての API routes にマッチ
+    async headers() {
+      return [
+        {
+          // 対象APIのパスパターン
+          // 今回は src/app/api/ 配下にAPIを作っているので下記のようにする
+          source: "/api/:path*",
+          headers: [
+            {
+              // CORSを許可するオリジン
+              key: "Access-Control-Allow-Origin",
+              // すべてのオリジンを許可するなら * (アスタリスク)
+              // ただセキュリティ的にはよろしくないので注意
+              value: "https://sample-prisma-next-app.vercel.app",
+            },
+            {
+              // 許可するメソッド
+              key: "Access-Control-Allow-Methods",
+              value: "GET,OPTIONS,POST",
+            },
+            {
+              // 許可するリクエストヘッダ
+              key: "Access-Control-Allow-Headers",
+              value: "Content-Type",
+            },
+          ],
+        },
+      ];
+    },
+  };
+  
+  module.exports = nextConfig;
+```
+
+## prismaようにlib/prisma.ts作成
+
+## api/user/route.ts作成
+
+## app/user/各種.tsx作成
+
+## APIに投げるURLは直書きする
+
+## APIのURLとvercelのURLは同じにする(settingsのdomainに合わせたほうがいい)
