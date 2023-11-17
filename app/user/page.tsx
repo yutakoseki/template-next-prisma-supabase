@@ -1,5 +1,5 @@
 import AddUser from "./addUser";
-import UserList from "./userList";
+// import UserList from "./userList";
 
 export default async function Home() {
   return (
@@ -7,7 +7,7 @@ export default async function Home() {
       <AddUser/>
       <br />
       {/* User一覧を表示するコンポーネント */}
-      <UserList />
+      {/* <UserList /> */}
     </div>
   );
 }
