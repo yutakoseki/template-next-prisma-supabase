@@ -19,7 +19,7 @@ export default function AddUser() {
         }
 
         // APIのURL
-        const url = "http://localhost:3000/api/user";
+        const url = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/user`;
         // リクエストパラメータ
         const params = {
             method: "POST",

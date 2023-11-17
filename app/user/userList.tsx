@@ -1,6 +1,7 @@
+"use client"
 export default async function UserList() {
     // APIのURL
-    const url = `${process.env.API_ENDPOINT}/api/user`;
+    const url = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/user`;
 
     // APIへリクエスト
     const res = await fetch(url, {
