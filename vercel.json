@@ -1,0 +1,10 @@
+{
+    "build": {
+      "env": {
+        "DATABASE_URL": "postgresql://postgres:quantum-tic-tac-entangle@db.zyeqyfgkjrvgqqgyitgk.supabase.co:5432/postgres"
+      },
+      "commands": {
+        "build": "prisma generate && next build"
+      }
+    }
+  }
