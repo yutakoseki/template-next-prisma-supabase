@@ -48,3 +48,20 @@ npm i @supabase/auth-helpers-nextjs @supabase/supabase-js
 ```shell
 npx prisma migrate dev --name 更新タイトル
 ```
+
+## デプロイ　→　失敗
+vercel.jsonの追加
+```
+{
+  "build": {
+    "env": {
+      "DATABASE_URL": "@your-database-url"
+    },
+    "commands": {
+      "build": "prisma generate && next build"
+    }
+  }
+}
+```
+
+@your-database-urlには.envのWRITER_DATABASE_URLを入力
