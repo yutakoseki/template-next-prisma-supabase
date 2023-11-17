@@ -19,7 +19,7 @@ export default function AddUser() {
         }
 
         // APIのURL
-        const url = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/api/user`;
+        const url = "https://quantum-tic-tac-entangle.vercel.app/api/user";
         // リクエストパラメータ
         const params = {
             method: "POST",
