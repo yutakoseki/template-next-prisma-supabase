@@ -1,6 +1,7 @@
 export default async function UserList() {
     // APIのURL
-    const url = "http://localhost:3000/api/user";
+    const url = `${process.env.API_ENDPOINT}/api/user`;
+
     // APIへリクエスト
     const res = await fetch(url, {
         cache: "no-store",
