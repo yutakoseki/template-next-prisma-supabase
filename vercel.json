@@ -7,8 +7,6 @@
         }
     ],
     "functions": {
-        "preBuild": {
-            "runtime": "@vercel/node"
-        }
+        "preBuild": "@vercel/node"
     }
 }
