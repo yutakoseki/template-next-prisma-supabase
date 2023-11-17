@@ -1,4 +1,5 @@
 {
+    "version": 2,
     "builds": [
         {
             "src": "vercel-build.js",
@@ -7,8 +8,7 @@
     ],
     "functions": {
         "preBuild": {
-            "runtime": "@vercel/node",
-            "handler": "vercel-build.js"
+            "runtime": "@vercel/node"
         }
     }
 }
