@@ -1,6 +1,8 @@
 export default async function UserList() {
     // APIのURL
     const url = "https://quantum-tic-tac-entangle.vercel.app/api/user";
+    // local用
+    // const url = "http://localhost:3000/api/user";
 
     // APIへリクエスト
     const res = await fetch(url, {
