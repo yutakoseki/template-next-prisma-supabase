@@ -11,12 +11,12 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     // リクエストボディ
-    const { id, name } = await req.json();
-    let numId = Number(id);
+    const { id, name, password } = await req.json();
     const res = await prisma.user.create({
         data: {
-            id: numId,
+            id: id,
             name: name,
+            hashedpassword: password,
         },
     });
 
