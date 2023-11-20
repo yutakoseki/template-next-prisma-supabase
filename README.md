@@ -125,7 +125,12 @@ npm i bcrypt
 npm i @types/bcrypt
 ```
 
-## GoogleAPI登録
+## Google providerの登録
 https://shirotamaki.hatenablog.com/entry/2023/03/26/155103
 クライアントID：732060251571-ggsn0tioc4a2hddibr4drp05hl01t5ms.apps.googleusercontent.com
 クライアントシークレット：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
+
+## Github providerの登録
+https://next-auth.js.org/providers/github
+https://github.com/settings/apps
+https://qiita.com/kage1020/items/8224efd0f3557256c541
