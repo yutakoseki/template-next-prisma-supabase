@@ -13,7 +13,7 @@ const nextConfig = {
               key: "Access-Control-Allow-Origin",
               // すべてのオリジンを許可するなら * (アスタリスク)
               // ただセキュリティ的にはよろしくないので注意
-              value: "https://sample-prisma-next-app.vercel.app",
+              value: "https://quantum-tic-tac-entangle.vercel.app",
             },
             {
               // 許可するメソッド
