@@ -4,23 +4,23 @@ import Login from './components/Login';
 import Logout from './components/Logout';
 
 export default function Home() {
-  const { data: session, status } = useSession();
-  return (
-    <div>
-      {status === 'authenticated' ? (
-        <div>
-          <p>セッションの期限：{session.expires}</p>
-          <p>ようこそ、{session.user?.name}さん</p>
-          <img src={session.user?.image ?? ``} alt="" style={{ borderRadius: '50px' }} />
-          <div>
-            <Logout />
-          </div>
+    const { data: session, status } = useSession();
+    return (
+        <div className="bg-zinc-800">
+            {status === 'authenticated' ? (
+                <div>
+                    <p>セッションの期限：{session.expires}</p>
+                    <p>ようこそ、{session.user?.name}さん</p>
+                    <img src={session.user?.image ?? ``} alt="" style={{ borderRadius: '50px' }} />
+                    <div>
+                        <Logout />
+                    </div>
+                </div>
+            ) : (
+                <>
+                    <Login />
+                </>
+            )}
         </div>
-      ) : (
-        <>
-          <Login />
-        </>
-      )}
-    </div>
-  );
+    );
 }

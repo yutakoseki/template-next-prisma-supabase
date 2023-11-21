@@ -128,9 +128,10 @@ export function checkWin(stoneArray: number[]): boolean {
             return true;
         }
     }
+    console.log('勝敗はついていません');
     return false;
 }
 
 function isSubset(stone: number[], pattern: number[]): boolean {
-    return stone.every((element) => pattern.includes(element));
+    return pattern.every((element) => stone.includes(element));
 }
