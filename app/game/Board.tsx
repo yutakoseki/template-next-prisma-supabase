@@ -1,13 +1,14 @@
 'use client';
-import { useState } from "react";
-import Observation from "./Observation";
+import { useState } from 'react';
+import Observation from './Observation';
 
 export default function Board() {
     const [count, setCount] = useState<number>(1);
-    const [turn, setTurn] = useState<string>("Player1");
+    const [turn, setTurn] = useState<string>('Player1');
     const [boardValues, setBoardValues] = useState(Array(64).fill(null));
     const [player1, setPlayer1] = useState<number[]>([]);
     const [player2, setPlayer2] = useState<number[]>([]);
+    const [winner, setWinner] = useState<string>('');
 
     // 石打
     const handleClickEvent = (index: number) => {
@@ -23,24 +24,22 @@ export default function Board() {
             // 偶数回目
             if (!player2.includes(index + 1)) {
                 setPlayer2((prevPlayer2) => [...prevPlayer2, index + 1]);
-                setTurn("Player1");
+                setTurn('Player1');
             }
         } else {
             // 奇数回目
             if (!player1.includes(index + 1)) {
                 setPlayer1((prevPlayer1) => [...prevPlayer1, index + 1]);
-                setTurn("Player2");
+                setTurn('Player2');
             }
         }
-    }
+    };
 
     // 観測
     const handleObservation = (turn: string) => {
-        Observation({turn, player1, player2});
-    }
-
-    console.log('player1', player1);
-    console.log('player2', player2);
+        const result: any = Observation({ turn, player1, player2 });
+        setWinner(result);
+    };
 
     return (
         <>
@@ -72,7 +71,12 @@ export default function Board() {
                     </div>
                 ))}
             </div>
-            <div><button value="observation" onClick={() => handleObservation(turn)}>観測</button></div>
+            <div>
+                <button value="observation" onClick={() => handleObservation(turn)}>
+                    観測
+                </button>
+            </div>
+            <div>{winner ? `Winner: ${winner}` : ''}</div>
         </>
     );
 }

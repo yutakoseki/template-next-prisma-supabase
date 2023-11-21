@@ -1,6 +1,6 @@
 'use client';
-import { useState } from "react";
-import Board from "./Board";
+import { useState } from 'react';
+import Board from './Board';
 
 export default function Observation() {
     const [winner, setWinner] = useState<string | null>(null);
@@ -9,9 +9,9 @@ export default function Observation() {
         let checkWinner = '';
         let checkFirstPlayer: number[] = [];
         let checkSecondPlayer: number[] = [];
-        if(turn === 'player1'){
+        if (turn === 'player1') {
             checkFirstPlayer = player1;
-        }else{
+        } else {
             checkSecondPlayer = player2;
         }
 
@@ -79,12 +79,12 @@ export default function Observation() {
 
         // checkFirstPlayerの配列の中に32、39、46、53、60の数字がすべてある → 勝利
 
-        if(checkWinner !== ''){
-            return ;
+        if (checkWinner !== '') {
+            return;
         }
 
         // 後攻の判定
-                // 横方向判定
+        // 横方向判定
         // checkSecondPlayerの配列の配列の中に1～8以下の数字が5個以上ある
 
         // checkSecondPlayerの配列の配列の中に9～16以下の数字が5個以上ある
@@ -146,7 +146,7 @@ export default function Observation() {
         // checkSecondPlayerの配列の配列の中に24、31、38、45、52、59の数字が5個以上ある
 
         // checkSecondPlayerの配列の配列の中に32、39、46、53、60の数字がすべてある → 勝利
-    }
+    };
     return (
         <div>
             <Board checkWinner={checkWinner} />
