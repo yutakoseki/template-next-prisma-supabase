@@ -18,14 +18,20 @@ export default function Board() {
     const [countPlayer1, setCountPlayer1] = useState<number>(0);
     const [player1_stone90, setPlayer1_stone90] = useState<number[]>([]);
     const [player1_stone70, setPlayer1_stone70] = useState<number[]>([]);
-    const [player1_stone30, setPlayer1_stone30] = useState<number[]>([]);
-    const [player1_stone10, setPlayer1_stone10] = useState<number[]>([]);
 
     const [countPlayer2, setCountPlayer2] = useState<number>(0);
     const [player2_stone90, setPlayer2_stone90] = useState<number[]>([]);
     const [player2_stone70, setPlayer2_stone70] = useState<number[]>([]);
-    const [player2_stone30, setPlayer2_stone30] = useState<number[]>([]);
-    const [player2_stone10, setPlayer2_stone10] = useState<number[]>([]);
+
+    // 次の手番の石の管理
+    const [nextCountPlyaer1, setNextCountPlyaer1] = useState<number>(1);
+    const [nextCountPlyaer2, setNextCountPlyaer2] = useState<number>(1);
+    const [nextPlayer1Stone, setNextPlayer1Stone] = useState<number>(1);
+    const [nextPlayer1Stone90, setNextPlayer1Stone90] = useState<boolean>(true);
+    const [nextPlayer1Stone70, setNextPlayer1Stone70] = useState<boolean>(false);
+    const [nextPlayer2Stone, setNextPlayer2Stone] = useState<number>(1);
+    const [nextPlayer2Stone90, setNextPlayer2Stone90] = useState<boolean>(true);
+    const [nextPlayer2Stone70, setNextPlayer2Stone70] = useState<boolean>(false);
 
     // 石打
     const handleClickEvent = (index: number) => {
@@ -57,20 +63,20 @@ export default function Board() {
                         clickNumber,
                     ]);
                 }
-                if (resStoneProbability === 30) {
-                    setPlayer2_stone30((prevPlayer2_stone30) => [
-                        ...prevPlayer2_stone30,
-                        clickNumber,
-                    ]);
-                }
-                if (resStoneProbability === 10) {
-                    setPlayer2_stone10((prevPlayer2_stone10) => [
-                        ...prevPlayer2_stone10,
-                        clickNumber,
-                    ]);
-                }
                 setPlayer2((prevPlayer2) => [...prevPlayer2, clickNumber]);
                 setTurn('Player1');
+
+                // 次の手番の石を表示
+                if(nextPlayer2Stone === 1){
+                    setNextPlayer2Stone(2);
+                    setNextPlayer2Stone90(false);
+                    setNextPlayer2Stone70(true);
+                }
+                if(nextPlayer2Stone === 2){
+                    setNextPlayer2Stone(1);
+                    setNextPlayer2Stone70(false);
+                    setNextPlayer2Stone90(true);
+                }
             }
         } else {
             // 奇数回目（先行）
@@ -91,20 +97,20 @@ export default function Board() {
                         clickNumber,
                     ]);
                 }
-                if (resStoneProbability === 30) {
-                    setPlayer1_stone30((prevPlayer1_stone30) => [
-                        ...prevPlayer1_stone30,
-                        clickNumber,
-                    ]);
-                }
-                if (resStoneProbability === 10) {
-                    setPlayer1_stone10((prevPlayer1_stone10) => [
-                        ...prevPlayer1_stone10,
-                        clickNumber,
-                    ]);
-                }
                 setPlayer1((prevPlayer1) => [...prevPlayer1, clickNumber]);
                 setTurn('Player2');
+
+                // 次の手番の石を表示
+                if(nextPlayer1Stone === 1){
+                    setNextPlayer1Stone(2);
+                    setNextPlayer1Stone90(false);
+                    setNextPlayer1Stone70(true);
+                }
+                if(nextPlayer1Stone === 2){
+                    setNextPlayer1Stone(1);
+                    setNextPlayer1Stone70(false);
+                    setNextPlayer1Stone90(true);
+                }
             }
         }
     };
@@ -174,7 +180,7 @@ export default function Board() {
                                 buttonClass += ` ${
                                     player1.includes(buttonValue) ? 'bg-cyan-700 text-white' : ''
                                 } ${
-                                    player2.includes(buttonValue) ? 'bg-cyan-50 text-cyan-700' : ''
+                                    player2.includes(buttonValue) ? 'bg-rose-700 text-white' : ''
                                 }`;
                             } else {
                                 buttonClass += ` ${
@@ -188,33 +194,13 @@ export default function Board() {
                                         : ''
                                 }
                                 ${
-                                    player1_stone30.includes(buttonValue)
-                                        ? 'bg-cyan-200 text-cyan-600'
-                                        : ''
-                                }
-                                ${
-                                    player1_stone10.includes(buttonValue)
-                                        ? 'bg-cyan-50 text-cyan-600'
-                                        : ''
-                                }
-                                ${
                                     player2_stone90.includes(buttonValue)
-                                        ? 'bg-cyan-50 text-cyan-600'
+                                        ? 'bg-rose-700 text-white'
                                         : ''
                                 }
                                 ${
                                     player2_stone70.includes(buttonValue)
-                                        ? 'bg-cyan-200 text-cyan-600'
-                                        : ''
-                                }
-                                ${
-                                    player2_stone30.includes(buttonValue)
-                                        ? 'bg-cyan-500 text-white'
-                                        : ''
-                                }
-                                ${
-                                    player2_stone10.includes(buttonValue)
-                                        ? 'bg-cyan-700 text-white'
+                                        ? 'bg-rose-500 text-white'
                                         : ''
                                 }`;
                             }
@@ -245,6 +231,26 @@ export default function Board() {
                 )}
             </div>
             <div>{winner ? `Winner: ${winner}` : ''}</div>
+            <div className='flex text-center'>
+                <div className='w-1/2'>
+                    <div>Player1 :次量子石</div>
+                    {nextPlayer1Stone90 && (
+                        <button className='square w-20 h-20 border rounded-full bg-cyan-700 text-white'>90</button>
+                    )}
+                    {nextPlayer1Stone70 && (
+                        <button className='square w-20 h-20 border rounded-full bg-cyan-500 text-white'>70</button>
+                    )}
+                </div>
+                <div className='w-1/2'>
+                    <div>Player2 :次量子石</div>
+                    {nextPlayer2Stone90 && (
+                        <button className='square w-20 h-20 border rounded-full bg-rose-700 text-white'>90</button>
+                    )}
+                    {nextPlayer2Stone70 && (
+                        <button className='square w-20 h-20 border rounded-full bg-rose-500 text-white'>70</button>
+                    )}
+                </div>
+            </div>
         </>
     );
 }

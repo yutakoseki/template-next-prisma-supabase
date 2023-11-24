@@ -3,5 +3,7 @@
     "auto-rename-tag.activationOnLanguage": [
         
         "*"
-    ]
+    ],
+    "editor.formatOnSave": true,
+    "files.autoSave": "afterDelay"
 }

@@ -129,8 +129,12 @@ npm i @types/bcrypt
 https://shirotamaki.hatenablog.com/entry/2023/03/26/155103
 クライアントID：732060251571-ggsn0tioc4a2hddibr4drp05hl01t5ms.apps.googleusercontent.com
 クライアントシークレット：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
+- 本番環境のURLが分かるのであれば「承認済みの JavaScript 生成元」と「承認済みのリダイレクト URI」も追加しておいてよい
 
 ## Github providerの登録
 https://next-auth.js.org/providers/github
 https://github.com/settings/apps
 https://qiita.com/kage1020/items/8224efd0f3557256c541
+
+
+## vercelの環境変数にGoogleとGithubのプロバイダを追加
