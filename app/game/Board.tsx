@@ -67,12 +67,12 @@ export default function Board() {
                 setTurn('Player1');
 
                 // 次の手番の石を表示
-                if(nextPlayer2Stone === 1){
+                if (nextPlayer2Stone === 1) {
                     setNextPlayer2Stone(2);
                     setNextPlayer2Stone90(false);
                     setNextPlayer2Stone70(true);
                 }
-                if(nextPlayer2Stone === 2){
+                if (nextPlayer2Stone === 2) {
                     setNextPlayer2Stone(1);
                     setNextPlayer2Stone70(false);
                     setNextPlayer2Stone90(true);
@@ -101,12 +101,12 @@ export default function Board() {
                 setTurn('Player2');
 
                 // 次の手番の石を表示
-                if(nextPlayer1Stone === 1){
+                if (nextPlayer1Stone === 1) {
                     setNextPlayer1Stone(2);
                     setNextPlayer1Stone90(false);
                     setNextPlayer1Stone70(true);
                 }
-                if(nextPlayer1Stone === 2){
+                if (nextPlayer1Stone === 2) {
                     setNextPlayer1Stone(1);
                     setNextPlayer1Stone70(false);
                     setNextPlayer1Stone90(true);
@@ -179,9 +179,7 @@ export default function Board() {
                             if (isObserving) {
                                 buttonClass += ` ${
                                     player1.includes(buttonValue) ? 'bg-cyan-700 text-white' : ''
-                                } ${
-                                    player2.includes(buttonValue) ? 'bg-rose-700 text-white' : ''
-                                }`;
+                                } ${player2.includes(buttonValue) ? 'bg-rose-700 text-white' : ''}`;
                             } else {
                                 buttonClass += ` ${
                                     player1_stone90.includes(buttonValue)
@@ -225,29 +223,43 @@ export default function Board() {
                         ゲームを再開する
                     </button>
                 ) : (
-                    <button value="observation" onClick={() => handleObservation(turn)}>
-                        観測
+                    <button
+                        value="observation"
+                        onClick={() => handleObservation(turn)}
+                        className="relative px-6 py-3 font-bold text-white rounded-lg group"
+                    >
+                        <span className="absolute inset-0 w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-cyan-700 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
+                        <span className="absolute inset-0 w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-rose-700 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
+                        <span className="relative">Observation !</span>
                     </button>
                 )}
             </div>
             <div>{winner ? `Winner: ${winner}` : ''}</div>
-            <div className='flex text-center'>
-                <div className='w-1/2'>
+            <div className="flex text-center">
+                <div className="w-1/2">
                     <div>Player1 :次量子石</div>
                     {nextPlayer1Stone90 && (
-                        <button className='square w-20 h-20 border rounded-full bg-cyan-700 text-white'>90</button>
+                        <button className="square w-20 h-20 border rounded-full bg-cyan-700 text-white">
+                            90
+                        </button>
                     )}
                     {nextPlayer1Stone70 && (
-                        <button className='square w-20 h-20 border rounded-full bg-cyan-500 text-white'>70</button>
+                        <button className="square w-20 h-20 border rounded-full bg-cyan-500 text-white">
+                            70
+                        </button>
                     )}
                 </div>
-                <div className='w-1/2'>
+                <div className="w-1/2">
                     <div>Player2 :次量子石</div>
                     {nextPlayer2Stone90 && (
-                        <button className='square w-20 h-20 border rounded-full bg-rose-700 text-white'>90</button>
+                        <button className="square w-20 h-20 border rounded-full bg-rose-700 text-white">
+                            90
+                        </button>
                     )}
                     {nextPlayer2Stone70 && (
-                        <button className='square w-20 h-20 border rounded-full bg-rose-500 text-white'>70</button>
+                        <button className="square w-20 h-20 border rounded-full bg-rose-500 text-white">
+                            70
+                        </button>
                     )}
                 </div>
             </div>
