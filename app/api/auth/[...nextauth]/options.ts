@@ -31,15 +31,9 @@ export const options: NextAuthOptions = {
             // メルアド認証処理
             async authorize(credentials) {
                 const users = await GetUsersList();
-                // const users = [
-                //     { id: '1', email: 'user1@example.com', password: 'password1' },
-                //     { id: '2', email: 'user2@example.com', password: 'password2' },
-                //     { id: '3', email: 'abc@abc', password: '123' },
-                // ];
-
-                console.log(users);
-
-                const user = users.find((user: User) => user.email === credentials?.email);
+                const user = users.find((user: User) => {
+                    return user.email === credentials?.email;
+                });
 
                 if (user && user?.password === credentials?.password) {
                     return { id: user.id, name: user.email, email: user.email, role: 'admin' };

@@ -124,11 +124,9 @@ export const winningPatterns: number[][] = [
 export function checkWin(stoneArray: number[]): boolean {
     for (const pattern of winningPatterns) {
         if (isSubset(stoneArray, pattern)) {
-            console.log('勝ちパターン: ', pattern);
             return true;
         }
     }
-    console.log('勝敗はついていません');
     return false;
 }
 
