@@ -1,12 +1,12 @@
 export default async function UserList() {
     // APIのURL
-    const url = "https://quantum-tic-tac-entangle.vercel.app/api/user";
+    const url = 'https://quantum-tic-tac-entangle.vercel.app/api/user';
     // local用
     // const url = "http://localhost:3000/api/user";
 
     // APIへリクエスト
     const res = await fetch(url, {
-        cache: "no-store",
+        cache: 'no-store',
     });
     // レスポンスボディを取り出す
     const data = await res.json();
@@ -14,11 +14,12 @@ export default async function UserList() {
     return (
         <div>
             <h2>All Users</h2>
-            <br/>
+            <br />
             {data.map((user: any, index: any) => (
                 <div key={index}>
                     <div>Id: {user.id}</div>
-                    <div>Name: {user.name}</div><br/>
+                    <div>Name: {user.name}</div>
+                    <br />
                     {/* {user.posts.map((value: any) => `${value.title},`)} Profile:
                     {user.profile?.bio} */}
                 </div>
