@@ -4,23 +4,23 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function AddUser() {
+export default function Signin() {
     const router = useRouter();
-    const [id, setId] = useState('');
     const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
 
     // Userテーブルへデータを書き込む
     const fetchAsyncAddUser = async () => {
         // 入力されていないものがあれば、登録しない
-        if (name === '' || password === '') {
+        if (name === '' || email === '' || password === '') {
             return;
         }
 
         // APIのURL
         const url = 'https://quantum-tic-tac-entangle.vercel.app/api/user';
         // local用
-        // const url = "http://localhost:3000/api/user";
+        // const url = 'http://localhost:3000/api/user';
         // リクエストパラメータ
         const params = {
             method: 'POST',
@@ -31,6 +31,7 @@ export default function AddUser() {
             // リクエストボディ
             body: JSON.stringify({
                 name: name,
+                email: email,
                 password: password,
             }),
         };
@@ -39,8 +40,8 @@ export default function AddUser() {
         await fetch(url, params);
 
         // 入力値を初期化
-        setId('');
         setName('');
+        setEmail('');
         setPassword('');
 
         // 画面をリフレッシュ
@@ -48,11 +49,11 @@ export default function AddUser() {
     };
 
     // inputタグのvalueに変化があった際に実行される
-    const changeIdInput = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setId(e.target.value);
-    };
     const changeNameInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setName(e.target.value);
+    };
+    const changeEmailInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setEmail(e.target.value);
     };
     const changePasswordInput = (e: React.ChangeEvent<HTMLInputElement>) => {
         setPassword(e.target.value);
@@ -60,15 +61,15 @@ export default function AddUser() {
 
     return (
         <div>
-            <h2>Add User</h2>
+            <h2>ユーザー登録</h2>
             <div>
-                <div>
-                    <label>id:</label>
-                    <input type="text" name="id" value={id} onChange={changeIdInput} />
-                </div>
                 <div>
                     <label>Name:</label>
                     <input type="text" name="name" value={name} onChange={changeNameInput} />
+                </div>
+                <div>
+                    <label>email:</label>
+                    <input type="text" name="email" value={email} onChange={changeEmailInput} />
                 </div>
                 <div>
                     <label>password:</label>
@@ -80,7 +81,7 @@ export default function AddUser() {
                     />
                 </div>
                 <div>
-                    <button onClick={fetchAsyncAddUser}>追加</button>
+                    <button onClick={fetchAsyncAddUser}>登録</button>
                 </div>
             </div>
         </div>

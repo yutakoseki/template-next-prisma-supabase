@@ -1,7 +1,8 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from 'next/server';
 
 // Prisma Clientのインスタンスをインポート
-import prisma from "@/lib/prisma";
+import prisma from '@/lib/prisma';
+import Email from 'next-auth/providers/email';
 
 export async function GET() {
     const userArray = await prisma.user.findMany();
@@ -11,12 +12,12 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
     // リクエストボディ
-    const { id, name, password } = await req.json();
+    const { name, email, password } = await req.json();
     const res = await prisma.user.create({
         data: {
-            id: id,
             name: name,
-            hashedpassword: password,
+            email: email,
+            password: password,
         },
     });
 
