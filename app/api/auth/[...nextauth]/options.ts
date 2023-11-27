@@ -19,7 +19,7 @@ export const options: NextAuthOptions = {
         }),
         // メール認証
         CredentialsProvider({
-            name: 'Sign in',
+            name: 'Email',
             credentials: {
                 email: {
                     label: 'Email',
