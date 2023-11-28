@@ -4,7 +4,7 @@
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
-export default function Signin() {
+export default function Signup() {
     const router = useRouter();
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
@@ -18,9 +18,9 @@ export default function Signin() {
         }
 
         // APIのURL
-        const url = 'https://quantum-tic-tac-entangle.vercel.app/api/user';
+        // const url = 'https://quantum-tic-tac-entangle.vercel.app/api/user';
         // local用
-        // const url = 'http://localhost:3000/api/user';
+        const url = 'http://localhost:3000/api/user';
         // リクエストパラメータ
         const params = {
             method: 'POST',

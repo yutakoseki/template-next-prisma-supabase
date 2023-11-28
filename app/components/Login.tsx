@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSession, signIn } from 'next-auth/react';
 import Logout from './Logout';
+import Link from 'next/link';
 
 export default function Login() {
     const { data: session, status } = useSession();
@@ -24,13 +25,17 @@ export default function Login() {
                     </button>
                 </div>
                 <div>
-                    <button onClick={() => signIn('Sign in', {}, { prompt: 'login' })}>
+                    <button onClick={() => signIn('Email', {}, { prompt: 'login' })}>
                         メールアドレスでログイン
                     </button>
+                </div>
+                <div>
+                    <Link href="/signup">Sign Up</Link>
                 </div>
             </div>
         );
     } else {
+        console.log('session', session);
         return (
             <>
                 <div>ログイン中です</div>

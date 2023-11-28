@@ -52,13 +52,14 @@ export const options: NextAuthOptions = {
                 token.user = user;
                 const u = user as any;
                 token.role = u.role;
+                token.id = u.id;
             }
             if (account) {
                 token.accessToken = account.access_token;
             }
             return token;
         },
-        session: ({ session, token }) => {
+        session: async ({ session, token }) => {
             console.log('in session', { session, token });
             token.accessToken;
             return {
@@ -66,6 +67,7 @@ export const options: NextAuthOptions = {
                 user: {
                     ...session.user,
                     role: token.role,
+                    id: token.id,
                 },
             };
         },
